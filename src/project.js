@@ -4,7 +4,7 @@ export class Project {
     this.dueDate = dueDate;
     this.description = description;
     //id for later identification
-    this.id = crypto.randomUUID();
+    this.id = "project" + crypto.randomUUID();
     this.tasks = [];
   }
 }
