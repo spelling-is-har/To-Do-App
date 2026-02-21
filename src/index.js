@@ -23,11 +23,11 @@ console.log(newProject);
 // newProject.tasks = deleteTaskFromProject(secondTask, newProject);
 // console.log(newProject);
 
-saveProject(newProject);
-let saved = retrieveProject(newProject);
+// saveProject(newProject);
+// let saved = retrieveProject(newProject);
 
 // console.log(saved);
 
-// deleteProject(saved);
+deleteProject("e4f89026-78a3-4ddb-a653-8ef9942180ca");
 
 // console.log(saved);
