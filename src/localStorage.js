@@ -6,21 +6,19 @@ export function saveProject(project) {
   localStorage.setItem(project.id, JSON.stringify(project));
 }
 
-export function deleteProject(project) {
+export function deleteProject(projectId) {
   //check to see if a project has been provided for deletion
-  if (!project) throw new Error("No Project to delete");
+  if (!projectId) throw new Error("No Project to delete");
 
   //check to see the project exists in local storage
-  const storedProject = localStorage.getItem(project);
+  const storedProject = localStorage.getItem(projectId);
   if (!storedProject) throw new Error("Project does not exist");
-
-  console.log(project);
 
   localStorage.removeItem(project);
 }
 
-export function retrieveProject(project) {
-  const storedProject = localStorage.getItem(project.id);
+export function retrieveProject(projectId) {
+  const storedProject = localStorage.getItem(projectId);
 
   //check to see the project was saved
   if (!storedProject) throw new Error("No project found");

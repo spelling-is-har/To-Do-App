@@ -18,16 +18,19 @@ let newProject = new Project("projectTitle", "date", "notes");
 newProject.tasks.push(newTask, secondTask);
 
 newProject.tasks = addTaskToProject(thirdTask, newProject);
-console.log(newProject);
+// console.log(newProject);
 
 // newProject.tasks = deleteTaskFromProject(secondTask, newProject);
 // console.log(newProject);
 
 // saveProject(newProject);
-// let saved = retrieveProject(newProject);
+// let saved = retrieveProject(newProject.id);
 
 // console.log(saved);
 
-deleteProject("e4f89026-78a3-4ddb-a653-8ef9942180ca");
+// deleteProject("newProject");
 
 // console.log(saved);
+
+// let retrievedProject = retrieveProject("00d5cc89-0ae3-41af-bb41-956254276a70");
+// console.log(retrievedProject);
