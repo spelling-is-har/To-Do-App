@@ -6,5 +6,7 @@ export class Task {
     this.notes = notes;
     //give the object an id for later identification
     this.id = crypto.randomUUID();
+    //Tasks are not complete by default and must be set to complete after creation
+    this.isComplete = false;
   }
 }
