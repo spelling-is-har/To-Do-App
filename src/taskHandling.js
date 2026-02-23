@@ -1,3 +1,5 @@
+import { deleteProject, saveProject } from "./localStorage.js";
+
 export function addTaskToProject(task, project) {
   if (!task) {
     throw new Error("Task not defined");
@@ -26,8 +28,16 @@ export function deleteTaskFromProject(task, project) {
     throw new Error("Project not defined");
   }
 
-  //only returns the items that do not equal the task id
-  project.tasks = project.tasks.filter((item) => item.id != task.id);
+  //creates a temporary copy of the project with the updated tasks list, deletes the old
+  //project and saves the new one.
+  let tempProject = project;
 
-  return project.tasks;
+  //only returns the items that do not equal the task id
+  tempProject.tasks = project.tasks.filter((item) => item.id != task.id);
+
+  deleteProject(project.id);
+  saveProject(tempProject);
+
+  //returns the updated project
+  return tempProject;
 }

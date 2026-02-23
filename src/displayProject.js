@@ -1,5 +1,4 @@
 import { deleteTaskFromProject, addTaskToProject } from "./taskHandling.js";
-import { deleteProject, saveProject } from "./localStorage.js";
 
 export function displayProject(project) {
   const title = document.createElement("h1");
@@ -33,11 +32,8 @@ function displayTask(task, project) {
   deleteTask.classList.add("delete-task");
   deleteTask.innerText = "Delete Task";
   deleteTask.addEventListener("click", (event) => {
-    let tempProject = project;
-    tempProject.tasks = deleteTaskFromProject(task, project);
-    deleteProject(project.id);
-    saveProject(tempProject);
-    displayProject(tempProject);
+    const updatedProject = deleteTaskFromProject(task, project);
+    displayProject(updatedProject);
   });
 
   const taskInformation = document.createElement("details");
