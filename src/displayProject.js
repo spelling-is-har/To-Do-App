@@ -15,7 +15,9 @@ export function displayProject(project) {
     taskContainer.append(displayTask(task, project));
   }
 
+  //clears content container and then adds the new project
   const contentContainer = document.querySelector(".content-container");
+  contentContainer.innerHTML = "";
   contentContainer.append(title, description, taskContainer);
 }
 
