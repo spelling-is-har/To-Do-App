@@ -14,7 +14,7 @@ export function deleteProject(projectId) {
   const storedProject = localStorage.getItem(projectId);
   if (!storedProject) throw new Error("Project does not exist");
 
-  localStorage.removeItem(project);
+  localStorage.removeItem(projectId);
 }
 
 export function retrieveProject(projectId) {

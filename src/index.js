@@ -2,10 +2,11 @@
 import "./styles.css";
 import { Task } from "./task.js";
 import { Project } from "./project.js";
-import { addTaskToProject } from "./addTaskToProject.js";
-import { deleteTaskFromProject } from "./deleteTaskFromProject.js";
+import { addTaskToProject, deleteTaskFromProject } from "./taskHandling.js";
 import { saveProject, deleteProject, retrieveProject } from "./localStorage.js";
 import { displayProject } from "./displayProject.js";
+
+// localStorage.clear();
 
 let newTask = new Task("Take out the trash", "01022012", 1, "I hate this part");
 let secondTask = new Task("Clear the Kitchen", "date", "2", "I love this task");

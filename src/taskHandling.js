@@ -16,3 +16,18 @@ export function addTaskToProject(task, project) {
   updatedTask.push(task);
   return updatedTask;
 }
+
+export function deleteTaskFromProject(task, project) {
+  if (!task) {
+    throw new Error("Task not defined");
+  }
+
+  if (!project) {
+    throw new Error("Project not defined");
+  }
+
+  //only returns the items that do not equal the task id
+  project.tasks = project.tasks.filter((item) => item.id != task.id);
+
+  return project.tasks;
+}
