@@ -15,10 +15,19 @@ export function displayProject(project) {
     taskContainer.append(displayTask(task, project));
   }
 
-  //clears content container and then adds the new project
-  const contentContainer = document.querySelector(".content-container");
-  contentContainer.innerHTML = "";
-  contentContainer.append(title, description, taskContainer);
+  //checks to see if there already is a project container and updates it if there is
+  const existingProjectContainer = document.querySelector(".project-container");
+  if (existingProjectContainer) {
+    existingProjectContainer.innerHTML = "";
+    existingProjectContainer.append(title, description, taskContainer);
+  } else {
+    //if there is not an existing project container, then create one
+    const projectContainer = document.createElement("div");
+    projectContainer.classList.add("project-container");
+
+    const contentContainer = document.querySelector(".content-container");
+    contentContainer.append(projectContainer);
+  }
 }
 
 function displayTask(task, project) {

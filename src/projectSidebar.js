@@ -21,7 +21,7 @@ export function buildProjectNav() {
 }
 
 //button for adding a new project
-const newProjectButton = document.querySelector(".new-project");
+const newProjectButton = document.querySelector(".new-project-button");
 newProjectButton.addEventListener("click", (event) => {
   console.log("click");
 });
