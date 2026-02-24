@@ -8,6 +8,15 @@
   <body>
     <nav>
       <ul>
+        <li>
+          <button
+            class="new-project-button"
+            command="show-modal"
+            commandfor="new-project-dialog"
+          >
+            Add Project
+          </button>
+        </li>
         <li><a href="#">My Day</a></li>
         <li><a href="#">Next 7 Days</a></li>
         <li><a href="#">My Calender</a></li>
@@ -16,6 +25,24 @@
         <div class="projects-nav"></div>
       </ul>
     </nav>
-    <div class="content-container"></div>
+    <div class="content-container">
+      <dialog id="new-project-dialog">
+        <form action="#" id="project-form">
+          <div class="input-container">
+            <label for="name">Name</label>
+            <input type="text" id="project-name" required />
+          </div>
+          <div class="input-container">
+            <label for="">Due Date</label>
+            <input type="date" id="project-date" required />
+          </div>
+          <div class="input-container">
+            <label for="name">Description</label>
+            <input type="text" id="project-description" required />
+          </div>
+          <button type="submit" id="project-form-submit">Submit</button>
+        </form>
+      </dialog>
+    </div>
   </body>
 </html>

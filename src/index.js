@@ -9,6 +9,12 @@ import { buildProjectNav } from "./projectSidebar.js";
 
 localStorage.clear();
 
+// //button for adding a new project
+// const newProjectButton = document.querySelector(".new-project");
+// newProjectButton.addEventListener("click", (event) => {
+//   console.log("click");
+// });
+
 let newTask = new Task("Take out the trash", "01022012", 1, "I hate this part");
 let secondTask = new Task("Clear the Kitchen", "date", "2", "I love this task");
 let thirdTask = new Task("Third task", "date", "3", "I love this task");
