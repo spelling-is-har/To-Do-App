@@ -13,9 +13,9 @@ let newTask = new Task("Take out the trash", "01022012", 1, "I hate this part");
 let secondTask = new Task("Clear the Kitchen", "date", "2", "I love this task");
 let thirdTask = new Task("Third task", "date", "3", "I love this task");
 
-let newProject = new Project("project 1", "date", "notes");
-let newProject2 = new Project("project 2", "date", "notes");
-let newProject3 = new Project("project 3", "date", "notes");
+let newProject = new Project("project 1", "2028-12-31", "notes");
+let newProject2 = new Project("project 2", "2025-01-01", "notes");
+let newProject3 = new Project("project 3", "2027-01-01", "notes");
 
 newProject.tasks.push(newTask, secondTask);
 
