@@ -1,5 +1,5 @@
 import { deleteTaskFromProject, addTaskToProject } from "./taskHandling.js";
-import { deleteProject } from "./localStorage.js";
+import { deleteProject, retrieveProject, saveProject } from "./localStorage.js";
 import { buildProjectNav } from "./projectSidebar.js";
 
 //function that builds all the elements the make up the display of a project
@@ -23,6 +23,7 @@ export function displayProject(project) {
   editButton.dataset.id = project.id;
   editButton.addEventListener("click", (event) => {
     const editProjecTDialog = document.querySelector("#edit-project-dialog");
+    editProjecTDialog.dataset.id = project.id;
     editProjecTDialog.showModal();
 
     document.querySelector("#edit-project-name").value = project.title;
@@ -76,25 +77,33 @@ function displayTask(task, project) {
   return taskInformation;
 }
 
-// //event handler for edit project form
-// const newProjectForm = document.querySelector("#new-project-form");
-// newProjectForm.addEventListener("submit", (event) => {
-//   event.preventDefault();
+//event handler for edit project form
+const editProjectForm = document.querySelector("#edit-project-form");
+editProjectForm.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-//   const name = document.querySelector("#new-project-name").value;
-//   const date = document.querySelector("#new-project-date").value;
-//   const description = document.querySelector("#new-project-description").value;
+  //gets the project ID and then clears it for the next use of the form
+  const projectId = document.querySelector("#edit-project-dialog").dataset.id;
+  document.querySelector("#edit-project-dialog").dataset.id = "";
 
-//   const newProject = new Project(name, date, description);
-//   console.log(newProject);
+  const project = retrieveProject(projectId);
 
-//   saveProject(newProject);
-//   buildProjectNav();
+  project.title = document.querySelector("#edit-project-name").value;
+  project.date = document.querySelector("#edit-project-date").value;
+  project.description = document.querySelector(
+    "#edit-project-description",
+  ).value;
 
-//   document.querySelector("#new-project-name").value = "";
-//   document.querySelector("#new-project-date").value = "";
-//   document.querySelector("#new-project-description").value = "";
+  //deletes the old project and then saves the copy of the new one
+  deleteProject(projectId);
+  saveProject(project);
+  buildProjectNav();
 
-//   const dialog = document.querySelector("#new-project-dialog");
-//   dialog.close();
-// });
+  //clears the form for the next time it is open
+  document.querySelector("#edit-project-name").value = "";
+  document.querySelector("#edit-project-date").value = "";
+  document.querySelector("#edit-project-description").value = "";
+
+  const dialog = document.querySelector("#edit-project-dialog");
+  dialog.close();
+});
