@@ -26,29 +26,26 @@ export function buildProjectNav() {
 const newProjectButton = document.querySelector(".new-project-button");
 newProjectButton.addEventListener("click", (event) => {
   console.log("click");
-  const newProjectForm = document.querySelector("#new-project-form");
-  newProjectForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const name = document.querySelector("#new-project-name").value;
-    const date = document.querySelector("#new-project-date").value;
-    const description = document.querySelector(
-      "#new-project-description",
-    ).value;
-
-    const newProject = new Project(name, date, description);
-    console.log(newProject);
-
-    saveProject(newProject);
-    buildProjectNav();
-
-    document.querySelector("#new-project-name").value = "";
-    document.querySelector("#new-project-date").value = "";
-    document.querySelector("#new-project-description").value = "";
-
-    const dialog = document.querySelector("#new-project-dialog");
-    dialog.close();
-  });
 });
 
-//button for deleting a project
+const newProjectForm = document.querySelector("#new-project-form");
+newProjectForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const name = document.querySelector("#new-project-name").value;
+  const date = document.querySelector("#new-project-date").value;
+  const description = document.querySelector("#new-project-description").value;
+
+  const newProject = new Project(name, date, description);
+  console.log(newProject);
+
+  saveProject(newProject);
+  buildProjectNav();
+
+  document.querySelector("#new-project-name").value = "";
+  document.querySelector("#new-project-date").value = "";
+  document.querySelector("#new-project-description").value = "";
+
+  const dialog = document.querySelector("#new-project-dialog");
+  dialog.close();
+});
