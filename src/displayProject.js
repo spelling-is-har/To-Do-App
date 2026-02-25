@@ -1,4 +1,6 @@
 import { deleteTaskFromProject, addTaskToProject } from "./taskHandling.js";
+import { deleteProject } from "./localStorage.js";
+import { buildProjectNav } from "./projectSidebar.js";
 
 export function displayProject(project) {
   const title = document.createElement("h1");
@@ -15,19 +17,19 @@ export function displayProject(project) {
     taskContainer.append(displayTask(task, project));
   }
 
-  //checks to see if there already is a project container and updates it if there is
-  const existingProjectContainer = document.querySelector(".project-container");
-  if (existingProjectContainer) {
-    existingProjectContainer.innerHTML = "";
-    existingProjectContainer.append(title, description, taskContainer);
-  } else {
-    //if there is not an existing project container, then create one
-    const projectContainer = document.createElement("div");
-    projectContainer.classList.add("project-container");
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "delete";
+  deleteButton.dataset.id = project.id;
+  deleteButton.addEventListener("click", (event) => {
+    deleteProject(project.id);
+    buildProjectNav();
+    const projectContainer = document.querySelector(".project-container");
+    projectContainer.innerHTML = "";
+  });
 
-    const contentContainer = document.querySelector(".content-container");
-    contentContainer.append(projectContainer);
-  }
+  const projectContainer = document.querySelector(".project-container");
+  projectContainer.innerHTML = "";
+  projectContainer.append(title, description, taskContainer, deleteButton);
 }
 
 function displayTask(task, project) {
