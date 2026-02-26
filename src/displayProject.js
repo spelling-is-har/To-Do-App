@@ -118,6 +118,8 @@ addTaskForm.addEventListener("submit", (event) => {
 
   //closes the modal
   document.querySelector("#add-task-dialog").close();
+
+  buildProjectNav();
 });
 
 //event handler for edit project form
@@ -149,6 +151,4 @@ editProjectForm.addEventListener("submit", (event) => {
 
   const dialog = document.querySelector("#edit-project-dialog");
   dialog.close();
-
-  buildProjectNav();
 });
