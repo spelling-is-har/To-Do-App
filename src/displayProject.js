@@ -1,6 +1,7 @@
 import { deleteTaskFromProject, addTaskToProject } from "./taskHandling.js";
 import { deleteProject, retrieveProject, saveProject } from "./localStorage.js";
 import { buildProjectNav } from "./projectSidebar.js";
+import { Task } from "./task.js";
 
 //function that builds all the elements the make up the display of a project
 export function displayProject(project) {
@@ -17,6 +18,15 @@ export function displayProject(project) {
   for (let task of project.tasks) {
     taskContainer.append(displayTask(task, project));
   }
+
+  //creates a button that creates a new task
+  const addTask = document.createElement("button");
+  addTask.classList.add("add-task");
+  addTask.innerText = "Add Task";
+  addTask.addEventListener("click", (event) => {
+    document.querySelector("#add-task-dialog").dataset.id = project.id;
+    document.querySelector("#add-task-dialog").showModal();
+  });
 
   const editButton = document.createElement("button");
   editButton.innerText = "Edit";
@@ -48,6 +58,7 @@ export function displayProject(project) {
     title,
     description,
     taskContainer,
+    addTask,
     editButton,
     deleteButton,
   );
@@ -76,6 +87,38 @@ function displayTask(task, project) {
 
   return taskInformation;
 }
+
+//event handler for add task form
+const addTaskForm = document.querySelector("#add-task-form");
+addTaskForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const name = document.querySelector("#add-task-name").value;
+  const date = document.querySelector("#add-task-date").value;
+  const priority = document.querySelector("#add-task-priority").value;
+  const description = document.querySelector("#add-task-description").value;
+
+  //creates a new task from the data in the form
+  const newTask = new Task(name, date, priority, description);
+
+  //gets the project ID from the dataset on the modal form, then clears it for the next use
+  const projectId = document.querySelector("#add-task-dialog").dataset.id;
+  document.querySelector("#add-task-dialog").dataset.id = "";
+
+  //retrieves the project, updates it with the new task, saves it and then displays it to the user
+  let project = retrieveProject(projectId);
+  addTaskToProject(newTask, project);
+  saveProject(project);
+  displayProject(project);
+
+  //clears the form for the next time a task needs to be added
+  document.querySelector("#add-task-name").value = "";
+  document.querySelector("#add-task-date").value = "";
+  document.querySelector("#add-task-priority").value = "Low";
+  document.querySelector("#add-task-description").value = "";
+
+  //closes the modal
+  document.querySelector("#add-task-dialog").close();
+});
 
 //event handler for edit project form
 const editProjectForm = document.querySelector("#edit-project-form");
@@ -106,4 +149,6 @@ editProjectForm.addEventListener("submit", (event) => {
 
   const dialog = document.querySelector("#edit-project-dialog");
   dialog.close();
+
+  buildProjectNav();
 });

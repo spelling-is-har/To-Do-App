@@ -19,7 +19,7 @@ let newProject3 = new Project("project 3", "2027-01-01", "notes");
 
 newProject.tasks.push(newTask, secondTask);
 
-newProject.tasks = addTaskToProject(thirdTask, newProject);
+// newProject.tasks = addTaskToProject(thirdTask, newProject);
 
 // console.log(newProject);
 

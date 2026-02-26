@@ -61,6 +61,32 @@
           <button type="submit" id="edit-project-form-submit">Submit</button>
         </form>
       </dialog>
+
+      <dialog id="add-task-dialog">
+        <form action="#" id="add-task-form">
+          <div class="input-container">
+            <label for="add-task-name">Name</label>
+            <input type="text" id="add-task-name" max="64" required />
+          </div>
+          <div class="input-container">
+            <label for="add-task-date">Due Date</label>
+            <input type="date" id="add-task-date" required />
+          </div>
+          <div class="input-container">
+            <label for="add-task-description">Description</label>
+            <input type="text" id="add-task-description" required />
+          </div>
+          <div class="input-container">
+            <label for="add-task-priority"></label>
+            <select name="add-task-priority" id="add-task-priority" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <button type="submit" id="add-task-form-submit">Submit</button>
+        </form>
+      </dialog>
     </div>
   </body>
 </html>

@@ -13,10 +13,11 @@ export function addTaskToProject(task, project) {
   const found = project.tasks.find(({ id }) => id === task.id);
   if (found) throw new Error("This task is already in the project");
 
-  //temporary array for the return value
-  let updatedTask = project.tasks;
-  updatedTask.push(task);
-  return updatedTask;
+  let tempProject = project;
+  tempProject.tasks.push(task);
+
+  deleteProject(project.id);
+  saveProject(tempProject);
 }
 
 export function deleteTaskFromProject(task, project) {
