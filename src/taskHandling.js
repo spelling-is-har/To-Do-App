@@ -7,7 +7,7 @@ export function retrieveTaskFromProject(taskId, projectId) {
   const project = retrieveProject(projectId);
 
   //looks for an ID match in the task
-  const task = project.tasks.filter((item) => item.id === taskId);
+  const task = project.tasks.find((item) => item.id === taskId);
 
   if (!task) throw new Error("Task not found");
 
