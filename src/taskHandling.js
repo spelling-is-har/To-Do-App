@@ -1,4 +1,19 @@
-import { deleteProject, saveProject } from "./localStorage.js";
+import { deleteProject, retrieveProject, saveProject } from "./localStorage.js";
+
+export function retrieveTaskFromProject(taskId, projectId) {
+  if (!taskId) throw new Error("Task not defined");
+  if (!projectId) throw new Error("Project not defined");
+
+  const project = retrieveProject(projectId);
+
+  //looks for an ID match in the task
+  const task = project.tasks.filter((item) => item.id === taskId);
+
+  if (!task) throw new Error("Task not found");
+
+  console.log(task);
+  return task;
+}
 
 export function addTaskToProject(task, project) {
   if (!task) {

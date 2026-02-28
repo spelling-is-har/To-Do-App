@@ -1,4 +1,8 @@
-import { deleteTaskFromProject, addTaskToProject } from "./taskHandling.js";
+import {
+  deleteTaskFromProject,
+  addTaskToProject,
+  retrieveTaskFromProject,
+} from "./taskHandling.js";
 import { deleteProject, retrieveProject, saveProject } from "./localStorage.js";
 import { buildProjectNav } from "./projectSidebar.js";
 import { Task } from "./task.js";
@@ -32,9 +36,9 @@ export function displayProject(project) {
   editButton.innerText = "Edit";
   editButton.dataset.id = project.id;
   editButton.addEventListener("click", (event) => {
-    const editProjecTDialog = document.querySelector("#edit-project-dialog");
-    editProjecTDialog.dataset.id = project.id;
-    editProjecTDialog.showModal();
+    const editProjectDialog = document.querySelector("#edit-project-dialog");
+    editProjectDialog.dataset.id = project.id;
+    editProjectDialog.showModal();
 
     document.querySelector("#edit-project-name").value = project.title;
     document.querySelector("#edit-project-date").value = project.dueDate;
@@ -73,6 +77,25 @@ function displayTask(task, project) {
   const taskNotes = document.createElement("p");
   taskNotes.innerText = task.notes;
 
+  //creates button that deletes task from the project
+  const editTaskButton = document.createElement("button");
+  editTaskButton.classList.add("edit-task-button");
+  editTaskButton.innerText = "Edit Task";
+  editTaskButton.addEventListener("click", (event) => {
+    //sets the dialog dataset ID to project and task ID's so they can be used for
+    //loading the data of the task in to the form for editing
+    const editTaskDialog = document.querySelector("#edit-task-dialog");
+    editTaskDialog.dataset.taskId = task.id;
+    editTaskDialog.dataset.projectId = project.id;
+
+    //sets the values of the form to the current task values
+    document.querySelector("#edit-task-name").value = task.title;
+    document.querySelector("#edit-task-date").value = task.dueDate;
+    document.querySelector("#edit-task-description").value = task.notes;
+    document.querySelector("#edit-task-priority").value = task.priority;
+    editTaskDialog.showModal();
+  });
+
   //creates button that deletes that task from the project
   const deleteTask = document.createElement("button");
   deleteTask.classList.add("delete-task");
@@ -83,7 +106,7 @@ function displayTask(task, project) {
   });
 
   const taskInformation = document.createElement("details");
-  taskInformation.append(taskTitle, taskNotes, deleteTask);
+  taskInformation.append(taskTitle, taskNotes, editTaskButton, deleteTask);
 
   return taskInformation;
 }
@@ -122,6 +145,46 @@ addTaskForm.addEventListener("submit", (event) => {
   buildProjectNav();
 });
 
+//event handler for edit task form
+const editTaskForm = document.querySelector("#edit-task-form");
+editTaskForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  //use the edit-task-dialog dataset to retrieve the task and project
+  const dialog = document.querySelector("#edit-task-dialog");
+  const task = retrieveTaskFromProject(
+    dialog.dataset.taskId,
+    dialog.dataset.projectId,
+  );
+
+  const project = retrieveProject(dialog.dataset.projectId);
+
+  //clear the datasets for the next use of the form
+  dialog.dataset.projectId = "";
+  dialog.dataset.taskId = "";
+
+  let updatedTask = task;
+
+  updatedTask.title = document.querySelector("#edit-task-name").value;
+  updatedTask.dueDate = document.querySelector("#edit-task-date").value;
+  updatedTask.notes = document.querySelector("#edit-task-description").value;
+  updatedTask.priority - document.querySelector("#edit-task-priority").value;
+
+  const updatedProject = deleteTaskFromProject(task, project);
+  addTaskToProject(updatedTask, updatedProject);
+  deleteProject(project.id);
+  saveProject(updatedProject);
+  buildProjectNav();
+  displayProject(updatedProject);
+
+  document.querySelector("#edit-task-name").value = "";
+  document.querySelector("#edit-task-date").value = "";
+  document.querySelector("#edit-task-description").value = "";
+  document.querySelector("#edit-task-priority").value = "";
+
+  dialog.close();
+});
+
 //event handler for edit project form
 const editProjectForm = document.querySelector("#edit-project-form");
 editProjectForm.addEventListener("submit", (event) => {
@@ -143,6 +206,7 @@ editProjectForm.addEventListener("submit", (event) => {
   deleteProject(projectId);
   saveProject(project);
   buildProjectNav();
+  displayProject(project);
 
   //clears the form for the next time it is open
   document.querySelector("#edit-project-name").value = "";

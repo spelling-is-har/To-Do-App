@@ -87,6 +87,32 @@
           <button type="submit" id="add-task-form-submit">Submit</button>
         </form>
       </dialog>
+
+      <dialog id="edit-task-dialog">
+        <form action="#" id="edit-task-form">
+          <div class="input-container">
+            <label for="edit-task-name">Name</label>
+            <input type="text" id="edit-task-name" max="64" required />
+          </div>
+          <div class="input-container">
+            <label for="edit-task-date">Due Date</label>
+            <input type="date" id="edit-task-date" required />
+          </div>
+          <div class="input-container">
+            <label for="edit-task-description">Description</label>
+            <input type="text" id="edit-task-description" required />
+          </div>
+          <div class="input-container">
+            <label for="edit-task-priority"></label>
+            <select name="edit-task-priority" id="edit-task-priority" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <button type="submit" id="edit-task-form-submit">Submit</button>
+        </form>
+      </dialog>
     </div>
   </body>
 </html>

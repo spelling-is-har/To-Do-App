@@ -7,17 +7,15 @@ import { saveProject, deleteProject, retrieveProject } from "./localStorage.js";
 import { displayProject } from "./displayProject.js";
 import { buildProjectNav } from "./projectSidebar.js";
 
-localStorage.clear();
+// let newTask = new Task("Take out the trash", "01022012", 1, "I hate this part");
+// let secondTask = new Task("Clear the Kitchen", "date", "2", "I love this task");
+// let thirdTask = new Task("Third task", "date", "3", "I love this task");
 
-let newTask = new Task("Take out the trash", "01022012", 1, "I hate this part");
-let secondTask = new Task("Clear the Kitchen", "date", "2", "I love this task");
-let thirdTask = new Task("Third task", "date", "3", "I love this task");
+// let newProject = new Project("project 1", "2028-12-31", "High", "notes");
+// let newProject2 = new Project("project 2", "2025-01-01", "Low", "notes");
+// let newProject3 = new Project("project 3", "2027-01-01", "Medium", "notes");
 
-let newProject = new Project("project 1", "2028-12-31", "notes");
-let newProject2 = new Project("project 2", "2025-01-01", "notes");
-let newProject3 = new Project("project 3", "2027-01-01", "notes");
-
-newProject.tasks.push(newTask, secondTask);
+// newProject.tasks.push(newTask, secondTask);
 
 // newProject.tasks = addTaskToProject(thirdTask, newProject);
 
@@ -26,9 +24,9 @@ newProject.tasks.push(newTask, secondTask);
 // newProject.tasks = deleteTaskFromProject(secondTask, newProject);
 // console.log(newProject);
 
-saveProject(newProject);
-saveProject(newProject2);
-saveProject(newProject3);
+// saveProject(newProject);
+// saveProject(newProject2);
+// saveProject(newProject3);
 
 // displayProject(newProject);
 
