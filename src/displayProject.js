@@ -208,12 +208,16 @@ editTaskForm.addEventListener("submit", (event) => {
   buildProjectNav();
   displayProject(updatedProject);
 
+  dialog.close();
+});
+
+//event listener for closing the dialog to clear the values in the form
+editTaskForm.addEventListener("close", (event) => {
+  event.preventDefault();
   document.querySelector("#edit-task-name").value = "";
   document.querySelector("#edit-task-date").value = "";
   document.querySelector("#edit-task-description").value = "";
-  document.querySelector("#edit-task-priority").value = "";
-
-  dialog.close();
+  document.querySelector("#edit-task-priority").value = 0;
 });
 
 //event handler for edit project form
@@ -239,11 +243,15 @@ editProjectForm.addEventListener("submit", (event) => {
   buildProjectNav();
   displayProject(project);
 
+  const dialog = document.querySelector("#edit-project-dialog");
+  dialog.close();
+});
+
+//event listener for closing the dialog to clear the values in the form
+editProjectForm.addEventListener("close", (event) => {
+  event.preventDefault();
   //clears the form for the next time it is open
   document.querySelector("#edit-project-name").value = "";
   document.querySelector("#edit-project-date").value = "";
   document.querySelector("#edit-project-description").value = "";
-
-  const dialog = document.querySelector("#edit-project-dialog");
-  dialog.close();
 });
