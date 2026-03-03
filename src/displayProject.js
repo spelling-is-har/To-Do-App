@@ -9,6 +9,8 @@ import { Task } from "./task.js";
 import {
   updateTaskIsComplete,
   updateProjectIsComplete,
+  editTask,
+  editProject,
 } from "./eventHandler.js";
 
 //function that builds all the elements the make up the display of a project
@@ -201,10 +203,7 @@ editTaskForm.addEventListener("submit", (event) => {
   updatedTask.notes = document.querySelector("#edit-task-description").value;
   updatedTask.priority = document.querySelector("#edit-task-priority").value;
 
-  const updatedProject = deleteTaskFromProject(task, project);
-  addTaskToProject(updatedTask, updatedProject);
-  deleteProject(project.id);
-  saveProject(updatedProject);
+  const updatedProject = editTask(task, updatedTask, project);
   buildProjectNav();
   displayProject(updatedProject);
 
@@ -229,19 +228,19 @@ editProjectForm.addEventListener("submit", (event) => {
   const projectId = document.querySelector("#edit-project-dialog").dataset.id;
   document.querySelector("#edit-project-dialog").dataset.id = "";
 
-  const project = retrieveProject(projectId);
+  //creates a copy of the original project to keep project.id intact
+  let updatedProject = retrieveProject(projectId);
 
-  project.title = document.querySelector("#edit-project-name").value;
-  project.date = document.querySelector("#edit-project-date").value;
-  project.description = document.querySelector(
+  updatedProject.title = document.querySelector("#edit-project-name").value;
+  updatedProject.date = document.querySelector("#edit-project-date").value;
+  updatedProject.description = document.querySelector(
     "#edit-project-description",
   ).value;
 
-  //deletes the old project and then saves the copy of the new one
-  deleteProject(projectId);
-  saveProject(project);
+  editProject(projectId, updatedProject);
+
   buildProjectNav();
-  displayProject(project);
+  displayProject(updatedProject);
 
   const dialog = document.querySelector("#edit-project-dialog");
   dialog.close();

@@ -34,3 +34,18 @@ export function updateProjectIsComplete(project, newStatus) {
   deleteProject(project.id);
   saveProject(updatedProject);
 }
+
+//creates a copy of the original project, updates the new project and then saves the new project
+export function editTask(task, updatedTask, project) {
+  const updatedProject = deleteTaskFromProject(task, project);
+  addTaskToProject(updatedTask, updatedProject);
+  deleteProject(project.id);
+  saveProject(updatedProject);
+  return updatedProject;
+}
+
+export function editProject(originalProjectId, updatedProject) {
+  //deletes the old project and then saves the copy of the new one
+  deleteProject(originalProjectId);
+  saveProject(updatedProject);
+}
