@@ -6,6 +6,7 @@ import {
 import { deleteProject, retrieveProject, saveProject } from "./localStorage.js";
 import { buildProjectNav } from "./projectSidebar.js";
 import { Task } from "./task.js";
+import { updateTaskIsComplete } from "./eventHandler.js";
 
 //function that builds all the elements the make up the display of a project
 export function displayProject(project) {
@@ -74,6 +75,17 @@ function displayTask(task, project) {
   taskTitle.classList.add("task-title");
   taskTitle.innerText = task.title;
 
+  //creates a checkbox to keep track of whether the task is complete
+  const taskComplete = document.createElement("input");
+  taskComplete.type = "checkbox";
+  taskComplete.classList.add("task-complete");
+  if (task.isComplete) taskComplete.checked = true;
+  taskComplete.addEventListener("change", (event) => {
+    event.preventDefault();
+    // console.log(taskComplete.checked);
+    updateTaskIsComplete(task, project, taskComplete.checked);
+  });
+
   const taskNotes = document.createElement("p");
   taskNotes.innerText = task.notes;
 
@@ -106,7 +118,13 @@ function displayTask(task, project) {
   });
 
   const taskInformation = document.createElement("details");
-  taskInformation.append(taskTitle, taskNotes, editTaskButton, deleteTask);
+  taskInformation.append(
+    taskTitle,
+    taskComplete,
+    taskNotes,
+    editTaskButton,
+    deleteTask,
+  );
 
   return taskInformation;
 }
@@ -168,7 +186,7 @@ editTaskForm.addEventListener("submit", (event) => {
   updatedTask.title = document.querySelector("#edit-task-name").value;
   updatedTask.dueDate = document.querySelector("#edit-task-date").value;
   updatedTask.notes = document.querySelector("#edit-task-description").value;
-  updatedTask.priority - document.querySelector("#edit-task-priority").value;
+  updatedTask.priority = document.querySelector("#edit-task-priority").value;
 
   const updatedProject = deleteTaskFromProject(task, project);
   addTaskToProject(updatedTask, updatedProject);
