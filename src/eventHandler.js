@@ -37,6 +37,10 @@ export function updateProjectIsComplete(project, newStatus) {
 
 //creates a copy of the original project, updates the new project and then saves the new project
 export function editTask(task, updatedTask, project) {
+  if (!task) throw new Error("Task is not defined");
+  if (!updatedTask) throw new Error("updatedTask is not defined");
+  if (!project) throw new Error("Project is not defined");
+
   const updatedProject = deleteTaskFromProject(task, project);
   addTaskToProject(updatedTask, updatedProject);
   deleteProject(project.id);
@@ -45,6 +49,9 @@ export function editTask(task, updatedTask, project) {
 }
 
 export function editProject(originalProjectId, updatedProject) {
+  if (!updatedProject) throw new Error("updatedProject is not defined");
+  if (!originalProjectId) throw new Error("originalProjectId is not defined");
+
   //deletes the old project and then saves the copy of the new one
   deleteProject(originalProjectId);
   saveProject(updatedProject);
