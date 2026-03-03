@@ -6,13 +6,26 @@ import {
 import { deleteProject, retrieveProject, saveProject } from "./localStorage.js";
 import { buildProjectNav } from "./projectSidebar.js";
 import { Task } from "./task.js";
-import { updateTaskIsComplete } from "./eventHandler.js";
+import {
+  updateTaskIsComplete,
+  updateProjectIsComplete,
+} from "./eventHandler.js";
 
 //function that builds all the elements the make up the display of a project
 export function displayProject(project) {
   const title = document.createElement("h1");
   title.classList.add("title");
   title.innerText = project.title;
+
+  //creates a checkbox to keep track of whether the project is complete
+  const projectComplete = document.createElement("input");
+  projectComplete.type = "checkbox";
+  projectComplete.classList.add("project-complete");
+  if (project.isComplete) projectComplete.checked = true;
+  projectComplete.addEventListener("change", (event) => {
+    event.preventDefault();
+    updateProjectIsComplete(project, projectComplete.checked);
+  });
 
   const description = document.createElement("div");
   description.classList.add("description");
@@ -61,6 +74,7 @@ export function displayProject(project) {
   projectContainer.innerHTML = "";
   projectContainer.append(
     title,
+    projectComplete,
     description,
     taskContainer,
     addTask,
@@ -82,7 +96,6 @@ function displayTask(task, project) {
   if (task.isComplete) taskComplete.checked = true;
   taskComplete.addEventListener("change", (event) => {
     event.preventDefault();
-    // console.log(taskComplete.checked);
     updateTaskIsComplete(task, project, taskComplete.checked);
   });
 
