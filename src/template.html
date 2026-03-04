@@ -22,10 +22,38 @@
         <li><a href="#">My Calender</a></li>
         <li><a href="#">My Projects</a></li>
         <li><a href="#">My Tasks</a></li>
-        <div class="projects-nav"></div>
       </ul>
+      <div class="projects-nav"></div>
     </nav>
     <div class="content-container">
+      <div class="project-container">
+        <h1 class="title">Placeholder Title</h1>
+        <input type="checkbox" class="project-complete" />
+        <div class="description">
+          This is some dummy text where the description will go when there is
+          some
+        </div>
+        <div>
+          <details>
+            <summary class="task-title">Task Title</summary>
+            <input type="checkbox" class="task-complete" />
+            <p>This is some dummy text</p>
+            <button class="edit-task-button">Edit</button>
+            <button class="delete-task"></button>
+          </details>
+          <details>
+            <summary class="task-title">Task Title 2</summary>
+            <input type="checkbox" class="task-complete" />
+            <p>This is some dummy text</p>
+            <button class="edit-task-button">Edit</button>
+            <button class="delete-task"></button>
+          </details>
+          <button class="add-project">Add</button>
+          <button class="edit-project">Edit</button>
+          <button class="delete-project">Delete</button>
+        </div>
+      </div>
+
       <div class="project-container"></div>
       <dialog id="new-project-dialog">
         <form action="#" id="new-project-form">
@@ -44,6 +72,7 @@
           <button type="submit" id="project-form-submit">Submit</button>
         </form>
       </dialog>
+
       <dialog id="edit-project-dialog">
         <form action="#" id="edit-project-form">
           <div class="input-container">
