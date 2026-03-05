@@ -30,24 +30,37 @@
         <h1 class="title">Placeholder Title</h1>
         <input type="checkbox" class="project-complete" />
         <div class="description">
-          This is some dummy text where the description will go when there is
-          some
+          This is some dummy text for the description of a project git
         </div>
-        <div>
-          <details>
-            <summary class="task-title">Task Title</summary>
-            <input type="checkbox" class="task-complete" />
-            <p>This is some dummy text</p>
-            <button class="edit-task-button">Edit</button>
-            <button class="delete-task"></button>
-          </details>
-          <details>
-            <summary class="task-title">Task Title 2</summary>
-            <input type="checkbox" class="task-complete" />
-            <p>This is some dummy text</p>
-            <button class="edit-task-button">Edit</button>
-            <button class="delete-task"></button>
-          </details>
+        <div class="tasks-container">
+          <div class="task-container">
+            <details>
+              <summary class="task-title">Task Title</summary>
+              <input type="checkbox" class="task-complete" />
+              <p>This is some dummy text</p>
+              <button class="edit-task-button">Edit</button>
+              <button class="delete-task">Delete</button>
+            </details>
+          </div>
+          <div class="task-container">
+            <div class="task-priority high">
+              <input type="checkbox" class="task-complete" />
+            </div>
+            <div class="task-content-container">
+              <details>
+                <summary class="task-title">
+                  <div class="task-summary-container">
+                    <div class="task-title-container">Task Title 2</div>
+                  </div>
+                </summary>
+                <p>This is some dummy text</p>
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task">Delete</button>
+              </details>
+            </div>
+          </div>
+        </div>
+        <div class="project-buttons-container">
           <button class="add-project">Add</button>
           <button class="edit-project">Edit</button>
           <button class="delete-project">Delete</button>

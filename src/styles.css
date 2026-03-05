@@ -137,6 +137,46 @@ nav li {
 }
 
 .project-container {
-  display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+}
+
+.tasks-container {
+  margin-top: 5%;
+}
+
+.task-container {
+  width: 100%;
+  margin-top: 2%;
+  border: solid 1px black;
+  border-radius: 20px;
+  display: flex;
+}
+
+.task-content-container {
+  margin: 10px;
+  width: 100%;
+}
+
+.task-priority {
+  width: 40px;
+  border-radius: 20px 0px 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-priority,
+.high {
+  background-color: var(--high-priority);
+}
+
+.task-container summary {
+  display: inline;
+}
+
+.task-summary-container {
+  width: 100%;
+  display: flex;
 }
