@@ -33,29 +33,88 @@
           This is some dummy text for the description of a project git
         </div>
         <div class="tasks-container">
-          <div class="task-container">
-            <details>
-              <summary class="task-title">Task Title</summary>
+          <div class="task-container low">
+            <div class="task-priority low">
               <input type="checkbox" class="task-complete" />
-              <p>This is some dummy text</p>
-              <button class="edit-task-button">Edit</button>
-              <button class="delete-task">Delete</button>
-            </details>
+            </div>
+            <div class="task-content-container">
+              <details>
+                <summary class="task-title">
+                  <h3>Task Title</h3>
+                  <h4>Due: 20-06-1993</h4>
+                </summary>
+                <p>
+                  This is some dummy text, I'd like this bit of dummy text to be
+                  a bit longer to see what it looks lik
+                </p>
+                <div class="task-buttons-container">
+                  <button class="edit-task-button">Edit</button>
+                  <button class="delete-task">Delete</button>
+                </div>
+              </details>
+            </div>
           </div>
-          <div class="task-container">
+          <div class="task-container medium">
+            <div class="task-priority medium">
+              <input type="checkbox" class="task-complete" />
+            </div>
+            <div class="task-content-container">
+              <details>
+                <summary class="task-title">
+                  <h3>Task Title</h3>
+                  <h4>Due: 20-06-1993</h4>
+                </summary>
+                <p>
+                  This is some dummy text, I'd like this bit of dummy text to be
+                  a bit longer to see what it looks lik
+                </p>
+                <div class="task-buttons-container">
+                  <button class="edit-task-button">Edit</button>
+                  <button class="delete-task">Delete</button>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="task-container high">
             <div class="task-priority high">
               <input type="checkbox" class="task-complete" />
             </div>
             <div class="task-content-container">
               <details>
                 <summary class="task-title">
-                  <div class="task-summary-container">
-                    <div class="task-title-container">Task Title 2</div>
-                  </div>
+                  <h3>Task Title</h3>
+                  <h4>Due: 20-06-1993</h4>
                 </summary>
-                <p>This is some dummy text</p>
-                <button class="edit-task-button">Edit</button>
-                <button class="delete-task">Delete</button>
+                <p>
+                  This is some dummy text, I'd like this bit of dummy text to be
+                  a bit longer to see what it looks lik
+                </p>
+                <div class="task-buttons-container">
+                  <button class="edit-task-button">Edit</button>
+                  <button class="delete-task">Delete</button>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="task-container high">
+            <div class="task-priority high">
+              <input type="checkbox" class="task-complete" />
+            </div>
+            <div class="task-content-container">
+              <details>
+                <summary class="task-title">
+                  <h3>Task Title</h3>
+                  <h4>Due: 20-06-1993</h4>
+                </summary>
+                <p>
+                  This is some dummy text, I'd like this bit of dummy text to be
+                  a bit longer to see what it looks lik
+                </p>
+                <div class="task-buttons-container">
+                  <button class="edit-task-button">Edit</button>
+                  <button class="delete-task">Delete</button>
+                </div>
               </details>
             </div>
           </div>
@@ -67,6 +126,7 @@
         </div>
       </div>
 
+      <!-- DIALOGS FOR FORMS -->
       <div class="project-container"></div>
       <dialog id="new-project-dialog">
         <form action="#" id="new-project-form">

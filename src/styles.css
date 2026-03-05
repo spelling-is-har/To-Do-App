@@ -79,12 +79,17 @@ h6 {
 /* END CSS NORMALISATION */
 
 :root {
-  --low-priority: #dae8c4;
+  --low-priority: #afd670;
+  --low-priority-secondary: #e3edd5;
+
   --medium-priority: #fcc288;
-  --high-priority: #a74649;
+  --medium-priority-secondary: #f4e4d3;
+  --high-priority: #e88b90;
+  --high-priority-secondary: #fbccce;
   --parchment: #f4edea;
   --platinum: #ebebeb;
   --charcoal: #333231;
+  --shadow-colour: #dedcdc;
 }
 
 body,
@@ -136,6 +141,17 @@ nav li {
   grid-column: 2/3;
 }
 
+.content-container button {
+  height: 40px;
+  width: 80px;
+  margin-right: 10px;
+  border-radius: 15px;
+  border: none;
+  background-color:;
+  cursor: pointer;
+  font-size: 1em;
+}
+
 .project-container {
   display: flex;
   flex-direction: column;
@@ -148,15 +164,34 @@ nav li {
 
 .task-container {
   width: 100%;
-  margin-top: 2%;
-  border: solid 1px black;
+  margin-top: 3%;
   border-radius: 20px;
   display: flex;
+  box-shadow: 0.1em 0.6em 1em var(--shadow-colour);
+}
+
+.task-container:hover {
+  position: relative;
+  top: -3px;
+  box-shadow: 0.3em 0.8em 1.5em var(--shadow-colour);
+}
+
+.task-container.high {
+  background-color: var(--high-priority-secondary);
+}
+
+.task-container.medium {
+  background-color: var(--medium-priority-secondary);
+}
+
+.task-container.low {
+  background-color: var(--low-priority-secondary);
 }
 
 .task-content-container {
   margin: 10px;
   width: 100%;
+  padding: 10px;
 }
 
 .task-priority {
@@ -167,16 +202,41 @@ nav li {
   align-items: center;
 }
 
-.task-priority,
-.high {
+.task-priority.high {
   background-color: var(--high-priority);
 }
 
-.task-container summary {
-  display: inline;
+.task-priority.medium {
+  background-color: var(--medium-priority);
 }
 
-.task-summary-container {
-  width: 100%;
+.task-priority.low {
+  background-color: var(--low-priority);
+}
+
+.task-container summary {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-container summary h3 {
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.task-container summary h4 {
+  font-size: 1rem;
+}
+
+.task-container summary:hover {
+  cursor: pointer;
+}
+
+.task-container details p {
+  margin-top: 10px;
+}
+
+.task-buttons-container {
+  margin-top: 15px;
 }
