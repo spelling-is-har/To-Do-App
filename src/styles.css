@@ -81,10 +81,9 @@ h6 {
 :root {
   --low-priority: #afd670;
   --low-priority-secondary: #e3edd5;
-
-  --medium-priority: #fcc288;
-  --medium-priority-secondary: #f4e4d3;
-  --high-priority: #e88b90;
+  --medium-priority: #fcdb88;
+  --medium-priority-secondary: #f7e7bf;
+  --high-priority: #ee6969;
   --high-priority-secondary: #fddfe1;
   --parchment: #f4edea;
   --platinum: #ebebeb;
@@ -160,15 +159,18 @@ nav li {
 
 .project-content-container {
   padding: 20px;
+  width: 100%;
 }
 
 .project-title-container {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .project-title-container h1 {
-  font-size: 3em;
   font-family: 600;
+  font-size: 3em;
 }
 
 .project-description-container {
@@ -181,7 +183,6 @@ nav li {
 
 .project-buttons-container {
   display: flex;
-  justify-content: space-between;
 }
 
 .content-container {
