@@ -179,13 +179,18 @@ nav li {
   margin-right: 3%;
 }
 
+.project-buttons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .content-container {
   grid-column: 2/3;
 }
 
 .content-container button {
   height: 40px;
-  width: 80px;
+  padding: 0 15px 0 15px;
   margin-right: 10px;
   border-radius: 15px;
   border: none;
