@@ -104,9 +104,10 @@ body {
 }
 
 nav {
+  height: 100%;
   background-color: var(--nav-background);
   grid-column: 1/2;
-  grid-row: 1/2;
+  grid-row: 1/3;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -203,6 +204,7 @@ nav li a:hover {
 
 .content-container {
   grid-column: 2/3;
+  grid-row: 1/2;
 }
 
 button {

@@ -12,7 +12,6 @@ import {
   editTask,
   editProject,
 } from "./eventHandler.js";
-import { da } from "date-fns/locale";
 
 //function that builds all the elements the make up the display of a project
 export function displayProject(project) {
