@@ -89,6 +89,7 @@ h6 {
   --platinum: #ebebeb;
   --charcoal: #333231;
   --shadow-colour: #dedcdc;
+  --nav-background: #87b3ff;
 }
 
 body,
@@ -103,7 +104,7 @@ body {
 }
 
 nav {
-  background-color: var(--platinum);
+  background-color: var(--nav-background);
   grid-column: 1/2;
   grid-row: 1/2;
   display: flex;
@@ -127,10 +128,25 @@ nav li {
   list-style: none;
 }
 
+nav li a {
+  font-size: 1.5em;
+  text-decoration: none;
+  color: var(--charcoal);
+}
+
+nav li a:hover {
+  font-size: 1.7 em;
+}
+
+.new-project-button {
+  width: 85%;
+  margin-top: 30px;
+}
+
 .projects-nav {
   width: 85%;
   border-top: solid 1px #333231;
-  margin-top: 25px;
+  margin-top: 12px;
   padding-top: 25px;
   display: flex;
   flex-direction: column;
@@ -189,7 +205,7 @@ nav li {
   grid-column: 2/3;
 }
 
-.content-container button {
+button {
   height: 40px;
   padding: 0 15px 0 15px;
   margin-right: 10px;
