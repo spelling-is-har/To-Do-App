@@ -305,3 +305,25 @@ button {
 .task-buttons-container {
   margin-top: 15px;
 }
+
+dialog {
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0.1em 0.6em 1em #333231;
+  border: none;
+  position: absolute;
+  /* top: 20%;
+  left: 50%; */
+}
+
+dialog h3 {
+  font-size: 2em;
+}
+
+dialog div {
+  margin-top: 15px;
+}
+
+dialog button {
+  margin-top: 15px;
+}
