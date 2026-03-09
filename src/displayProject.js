@@ -12,13 +12,10 @@ import {
   editTask,
   editProject,
 } from "./eventHandler.js";
+import { da } from "date-fns/locale";
 
 //function that builds all the elements the make up the display of a project
 export function displayProject(project) {
-  const title = document.createElement("h1");
-  title.classList.add("title");
-  title.innerText = project.title;
-
   //creates a checkbox to keep track of whether the project is complete
   const projectComplete = document.createElement("input");
   projectComplete.type = "checkbox";
@@ -29,9 +26,27 @@ export function displayProject(project) {
     updateProjectIsComplete(project, projectComplete.checked);
   });
 
-  const description = document.createElement("div");
-  description.classList.add("description");
+  const projectCompleteContainer = document.createElement("div");
+  projectCompleteContainer.classList.add("project-complete-container");
+  projectCompleteContainer.append(projectComplete);
+
+  const title = document.createElement("h1");
+  title.classList.add("title");
+  title.innerText = project.title;
+
+  const date = document.createElement("h3");
+  date.innerText = project.dueDate;
+
+  const projectTitleContainer = document.createElement("div");
+  projectTitleContainer.classList.add("project-title-container");
+  projectTitleContainer.append(title, date);
+
+  const description = document.createElement("p");
   description.innerText = project.description;
+
+  const projectDescriptionContainer = document.createElement("div");
+  projectDescriptionContainer.classList.add("project-description-container");
+  projectDescriptionContainer.append(description);
 
   const tasksContainer = document.createElement("div");
   tasksContainer.classList.add("tasks-container");
@@ -73,17 +88,28 @@ export function displayProject(project) {
     projectContainer.innerHTML = "";
   });
 
+  const projectButtonsContainer = document.createElement("div");
+  projectButtonsContainer.classList.add("project-buttons-container");
+  projectButtonsContainer.append(addTask, editButton, deleteButton);
+
+  const projectContentContainer = document.createElement("div");
+  projectContentContainer.classList.add("project-content-container");
+  projectContentContainer.append(
+    projectTitleContainer,
+    projectDescriptionContainer,
+    projectButtonsContainer,
+  );
+
+  const projectCardContainer = document.createElement("div");
+  projectCardContainer.classList.add("project-card-container");
+  projectCardContainer.append(
+    projectCompleteContainer,
+    projectContentContainer,
+  );
+
   const projectContainer = document.querySelector(".project-container");
   projectContainer.innerHTML = "";
-  projectContainer.append(
-    title,
-    projectComplete,
-    description,
-    tasksContainer,
-    addTask,
-    editButton,
-    deleteButton,
-  );
+  projectContainer.append(projectCardContainer, tasksContainer);
 }
 
 //function to build all the elements that make up the display of a task
