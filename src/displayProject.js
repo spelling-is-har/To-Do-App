@@ -33,10 +33,11 @@ export function displayProject(project) {
   description.classList.add("description");
   description.innerText = project.description;
 
-  const taskContainer = document.createElement("div");
+  const tasksContainer = document.createElement("div");
+  tasksContainer.classList.add("tasks-container");
   //iterate over all the tasks in a project and create a DOM element for each
   for (let task of project.tasks) {
-    taskContainer.append(displayTask(task, project));
+    tasksContainer.append(displayTask(task, project));
   }
 
   //creates a button that creates a new task
@@ -78,7 +79,7 @@ export function displayProject(project) {
     title,
     projectComplete,
     description,
-    taskContainer,
+    tasksContainer,
     addTask,
     editButton,
     deleteButton,
@@ -89,7 +90,18 @@ export function displayProject(project) {
 function displayTask(task, project) {
   const taskTitle = document.createElement("summary");
   taskTitle.classList.add("task-title");
-  taskTitle.innerText = task.title;
+
+  const taskTitleText = document.createElement("h3");
+  taskTitleText.innerText = task.title;
+
+  const taskDueDate = document.createElement("h4");
+  taskDueDate.innerText = "Due: " + task.dueDate;
+
+  taskTitle.append(taskTitleText, taskDueDate);
+
+  const taskPriorityContainer = document.createElement("div");
+  taskPriorityContainer.classList.add("task-priority");
+  taskPriorityContainer.classList.add(task.priority);
 
   //creates a checkbox to keep track of whether the task is complete
   const taskComplete = document.createElement("input");
@@ -100,6 +112,9 @@ function displayTask(task, project) {
     event.preventDefault();
     updateTaskIsComplete(task, project, taskComplete.checked);
   });
+
+  taskPriorityContainer.append(taskComplete);
+  taskPriorityContainer.classList.add(task.priority);
 
   const taskNotes = document.createElement("p");
   taskNotes.innerText = task.notes;
@@ -132,16 +147,25 @@ function displayTask(task, project) {
     displayProject(updatedProject);
   });
 
-  const taskInformation = document.createElement("details");
-  taskInformation.append(
-    taskTitle,
-    taskComplete,
-    taskNotes,
-    editTaskButton,
-    deleteTask,
-  );
+  const taskButtonsContainer = document.createElement("div");
+  taskButtonsContainer.classList.add("task-buttons-container");
+  taskButtonsContainer.append(editTaskButton, deleteTask);
 
-  return taskInformation;
+  const taskDetails = document.createElement("details");
+  taskDetails.append(taskTitle, taskNotes, taskButtonsContainer);
+
+  const taskContainer = document.createElement("div");
+  taskContainer.classList.add("task-container");
+
+  const taskContentContainer = document.createElement("div");
+  taskContentContainer.classList.add("task-content-container");
+
+  taskContentContainer.append(taskDetails);
+
+  taskContainer.append(taskPriorityContainer, taskContentContainer);
+  taskContainer.classList.add(task.priority);
+
+  return taskContainer;
 }
 
 //event handler for add task form
@@ -169,7 +193,7 @@ addTaskForm.addEventListener("submit", (event) => {
   //clears the form for the next time a task needs to be added
   document.querySelector("#add-task-name").value = "";
   document.querySelector("#add-task-date").value = "";
-  document.querySelector("#add-task-priority").value = "Low";
+  document.querySelector("#add-task-priority").value = 0;
   document.querySelector("#add-task-description").value = "";
 
   //closes the modal
