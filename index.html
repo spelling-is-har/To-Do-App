@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#">My Day</a></li>
+        <li><a href="#">Next 7 Days</a></li>
+        <li><a href="#">My Calender</a></li>
+        <li><a href="#">My Projects</a></li>
+        <li><a href="#">My Tasks</a></li>
+      </ul>
+      <button
+        class="new-project-button"
+        command="show-modal"
+        commandfor="new-project-dialog"
+      >
+        Add Project
+      </button>
+      <div class="projects-nav"></div>
+    </nav>
+    <div class="content-container">
+      <div class="project-container"></div>
+
+      <!-- DIALOGS FOR FORMS -->
+      <div class="project-container"></div>
+      <dialog id="new-project-dialog">
+        <h3>New Project</h3>
+        <form action="#" id="new-project-form">
+          <div class="input-container">
+            <label for="new-project-name">Name</label>
+            <input type="text" id="new-project-name" max="64" required />
+          </div>
+          <div class="input-container">
+            <label for="new-project-date">Due Date</label>
+            <input type="date" id="new-project-date" required />
+          </div>
+          <div class="input-container">
+            <label for="new-project-description">Description</label>
+            <input type="text" id="new-project-description" required />
+          </div>
+          <button type="submit" id="project-form-submit">Submit</button>
+        </form>
+      </dialog>
+
+      <dialog id="edit-project-dialog">
+        <h3>Edit Project</h3>
+        <form action="#" id="edit-project-form">
+          <div class="input-container">
+            <label for="edit-project-name">Name</label>
+            <input type="text" id="edit-project-name" max="64" required />
+          </div>
+          <div class="input-container">
+            <label for="edit-project-date">Due Date</label>
+            <input type="date" id="edit-project-date" required />
+          </div>
+          <div class="input-container">
+            <label for="edit-project-description">Description</label>
+            <input type="text" id="edit-project-description" required />
+          </div>
+          <button type="submit" id="edit-project-form-submit">Submit</button>
+        </form>
+      </dialog>
+
+      <dialog id="add-task-dialog">
+        <form action="#" id="add-task-form">
+          <h3>Add Task</h3>
+          <div class="input-container">
+            <label for="add-task-name">Name</label>
+            <input type="text" id="add-task-name" max="64" required />
+          </div>
+          <div class="input-container">
+            <label for="add-task-date">Due Date</label>
+            <input type="date" id="add-task-date" required />
+          </div>
+          <div class="input-container">
+            <label for="add-task-description">Description</label>
+            <input type="text" id="add-task-description" required />
+          </div>
+          <div class="input-container">
+            <label for="add-task-priority">Task Priority</label>
+            <select name="add-task-priority" id="add-task-priority" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <button type="submit" id="add-task-form-submit">Submit</button>
+        </form>
+      </dialog>
+
+      <dialog id="edit-task-dialog">
+        <form action="#" id="edit-task-form">
+          <h3>Edit Task</h3>
+          <div class="input-container">
+            <label for="edit-task-name">Name</label>
+            <input type="text" id="edit-task-name" max="64" required />
+          </div>
+          <div class="input-container">
+            <label for="edit-task-date">Due Date</label>
+            <input type="date" id="edit-task-date" required />
+          </div>
+          <div class="input-container">
+            <label for="edit-task-description">Description</label>
+            <input type="text" id="edit-task-description" required />
+          </div>
+          <div class="input-container">
+            <label for="edit-task-priority">Priority</label>
+            <select name="edit-task-priority" id="edit-task-priority" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <button type="submit" id="edit-task-form-submit">Submit</button>
+        </form>
+      </dialog>
+    </div>
+  </body>
+</html>
